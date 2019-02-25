@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for employee in employees %}
+    <li><h3>{{ employee.full_name }}</h3>
+    {% if employee.get_children %}
+        <ul>
+            {% for child in employee.get_children %}
+                <li>
+                <h5>{{ child.full_name }}</h5>
+                {% if child.get_children %}
+                    <ul>
+                {% for nested_child in child.get_children %}
+                    <li>
+                    <h5>{{ nested_child.full_name }}</h5>
+                    </li>
+                {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>
